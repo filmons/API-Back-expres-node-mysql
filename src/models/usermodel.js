@@ -1,4 +1,4 @@
-const db = require('/home/filmon/example Doker app/app-expres/db');
+const db = require('../db');
 
 exports.getAllUsers = (callback) => {
   //console.log(getAllUserName)

@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const userModel = require('../models/usermodel');
 const body_parser = require('body-parser');
 const jwt = require('jsonwebtoken');
-const { changeUser } = require('../../db');
+const { changeUser } = require('../db');
 const SECRET = 'motSecret';
 const MAXAGE = Math.floor(Date.now() / 1000) + 60 * 60;
 //function pour ajouter user
@@ -136,7 +136,7 @@ exports.findUser = (request, response) => {
           response.status(200).json({
             token: token,
             user: {
-              role: request.user.role,
+              city: request.user.city,
               first_name: request.user.first_name,
               last_name: request.user.last_name,
               email: request.user.email,

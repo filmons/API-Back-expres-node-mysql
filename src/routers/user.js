@@ -5,9 +5,9 @@ const userRouter = express.Router();
 
 const ContrlUser = require('../controllers/usercontroler')
 
-userRouter.get("/V1/users",ContrlUser.findAllUsers);
-userRouter.post("/V1/signup", ContrlUser.newUser);
-userRouter.post("/V1/sigin", ContrlUser.findUser);
+userRouter.get("/users",ContrlUser.findAllUsers);
+userRouter.post("/signup", ContrlUser.newUser);
+userRouter.post("/sigin", ContrlUser.findUser);
 
 
 
