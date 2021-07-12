@@ -1,6 +1,4 @@
 const { response, request } = require("express");
-
-
 const Class = require("../models/classM");
 
 exports.findAllClass= (request, response) => {
@@ -16,7 +14,6 @@ exports.findAllClass= (request, response) => {
   });
  }
     
-  //response.render("index.ejs", { classs ,Class});
   });
 }
 exports.addOneClass = (request, response) => {
@@ -40,32 +37,37 @@ exports.addOneClass = (request, response) => {
 exports.editOneClass = (request, response) => {
   
   const { id } = request.params; 
-  const { titre } = request.body; 
+  const { titre, description_one, description_two, description_three } = request.body; 
+  //console.log(request.body);{}
+  //console.log(request.params);
 
-  Class.editClass(id, titre, (error, result) => {
+  Class.editClass(id, titre, description_one, description_two, description_three, (error, result) => {
       if (error) {
-          response.send(error.message);
+        response.status(500).json({
+          message: 'there is probleme on your server.'
+        });
       }
       else { 
         response.status(200).json({
-         result
+          message:"the class has been edited "
         });
        }
     
-      //response.redirect("index.ejs");
   });
 }
 exports.deleteOne = (request, response) => {
   
-  const{ id} = request.params;
-  Class.deletePlace(id, ( error) => {
+   const{ id} = request.params;
+  // console.log(request.params);
+
+  Class.delete(id, ( error) => {
     if (error) {
       response.status(500).json({
         message: 'there is probleme on your server.'
       });
     }else 
     response.status(200).json({
-    message: "you have delete one place"
+    message: "you have delete one class"
     });
     console.log(id);
   });

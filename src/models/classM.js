@@ -1,3 +1,4 @@
+const { request } = require("express");
 const db = require("../db");
 
  
@@ -32,19 +33,23 @@ exports.createClass = (cours, callback) => {
 };
 
 
-exports.editClass = (id, text, callback) => { 
+exports.editClass = (id, titre, description_one, description_two, description_three, callback) => { 
     
-  db.query(`UPDATE ccoues SET text = "${text}" WHERE id = ${id};`, (error, result) => {
+  db.query(`UPDATE cours SET titre  = "${titre}", description_one = "${description_one}", description_two = "${description_two}", description_three ="${description_three}" WHERE id = ${id};`,
+   (error, result) => {
       if (error) {
           console.log("error: ", error);
           callback(error, null);
           return;
-      }
+      }else{ 
+ 
       callback(null, result);
       console.log(result);
+      }
+      
   })
 }
-exports.deleteCours = (id, callback) => {
+exports.delete = (id, callback) => {
   console.log(id);
   db.query(`DELETE FROM cours WHERE id = ${id};`, (error, result) => {
     if (error) {
@@ -54,6 +59,6 @@ exports.deleteCours = (id, callback) => {
       return;
     }
 
-    callback(error, null);
+    callback(error, result);
   });
 };
