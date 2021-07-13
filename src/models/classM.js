@@ -19,7 +19,6 @@ exports.createClass = (cours, callback) => {
   db.query(
     `INSERT INTO cours  (titre, description_one, description_two, description_three ) 
   VALUES ("${cours.titre}", "${cours.description_one}", "${cours.description_two}", "${cours.description_three}");`,
-  // ${cours.description_one}", "${cours.description_two}", "${cours.description_three}")
     (error, result) => {
       if (error) {
         console.log('error: ', error);
