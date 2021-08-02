@@ -1,27 +1,31 @@
 const { response, request } = require("express");
 const Class = require("../models/classM");
 
+
 exports.findAllClass= (request, response) => {
   //const { classs} = request;
- Class.findAll((error, corss) => {
+ Class.findAll((error, cours) => {
   if (error) {
     response.status(500).json({
       message: 'le servre founuction plus.'
     });
   }else { 
   response.status(200).json({
-   corss
+   cours
   });
  }
     
   });
 }
 exports.addOneClass = (request, response) => {
-  console.log(request.body.titre);
+  // console.log(request.body.titre);
+  // console.log(request.body.description_one);
+  // console.log(request.body.description_two);
+  // console.log(request.body.description_three);
   Class.createClass(request.body, (error, result) => {
     if (error) {
       response.status(500).json({
-        message: 'there is probleme on your server.'
+        message: 'there is probleme on your server  Co.'
       });
     } else {
 
@@ -58,7 +62,7 @@ exports.editOneClass = (request, response) => {
 exports.deleteOne = (request, response) => {
   
    const{ id} = request.params;
-  // console.log(request.params);
+  //console.log(request.params);
 
   Class.delete(id, ( error) => {
     if (error) {

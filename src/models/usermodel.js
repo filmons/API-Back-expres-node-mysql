@@ -15,7 +15,7 @@ callback(null, result)
 }
 
 exports.AddUser= (newUser, callback) => {
-console.log(newUser)
+//console.log(newUser)
     db.query(
       `INSERT INTO users( first_name,last_name, email, city, password) VALUES
       ("${newUser.first_name}", "${newUser.last_name}", "${newUser.email}", "${newUser.city}", "${newUser.password}");`,
@@ -60,7 +60,7 @@ exports.chikingUserData=(userdata,Callback)=>{
           console.log("error:", error)
           Callback(error,null)
       }
-      console.log(result)
+      //console.log(result)
       Callback(null,result)
   })
 }

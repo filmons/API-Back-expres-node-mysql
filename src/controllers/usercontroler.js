@@ -1,25 +1,20 @@
-//userModule =require('../models/usermodel')
-const bcrypt = require('bcrypt');
 const userModel = require('../models/usermodel');
+const { changeUser } = require('../db');
+const bcrypt = require('bcrypt');
 const body_parser = require('body-parser');
 const jwt = require('jsonwebtoken');
-const { changeUser } = require('../db');
 const SECRET = 'motSecret';
 const MAXAGE = Math.floor(Date.now() / 1000) + 60 * 60;
 //function pour ajouter user
 exports.newUser = (request, response) => {
 const { first_name, last_name, email, city, password } = request.body;
-// error if the frist name not have 
-console.log( 'value' , first_name, last_name,email, city, password)
-// console.log(request.body)
+// error if the frist name not rempli
 if (first_name.length ===  0) {
   response.status(400).json({
     message: "le champ frist_name n'est pas rensenlgné",
   });
-} else  {
-  
+} else  { 
 //chiking if email is exist
-  
   userModel.chikingUser(email, (error, result) => {
     console.log(changeUser)
     if(result.length !== 0) {
@@ -28,7 +23,6 @@ if (first_name.length ===  0) {
         message:
           'Un utilisateur utilisant cette adress email est déjà enregistré',
       });
-   
     } 
     else {
       // hashing the password
@@ -133,6 +127,8 @@ exports.findUser = (request, response) => {
           };
 
           response.cookie('authcookie', token, { maxAge: MAXAGE });
+          console.log(response.cookie.authcookie);
+          
           response.status(200).json({
             token: token,
             user: {
@@ -149,4 +145,7 @@ exports.findUser = (request, response) => {
     }
   });
 };
-
+exports.logout = (request, response) => {
+    response.clearCookie("authcookie");
+    response.redirect("/");
+  }
