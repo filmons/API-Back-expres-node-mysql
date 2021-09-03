@@ -1,13 +1,12 @@
 
 const express = require('express');
-const isAuth = require('../middlewaires/isAuth');
-
-const CalssRouter = express.Router();
+//const isAuth = require('../middlewaires/isAuth');
+const CalssRoute = express.Router();
 const classController = require('../controllers/classCo');
 
-CalssRouter.get("/cours", classController.findAllClass);
-CalssRouter.post("/cours",isAuth,classController.addOneClass);
-CalssRouter.put("/cours/edit/:id", classController.editOneClass);
-//CalssRouter.delete("/cours/delete/:id", classController.deleteOne);
+CalssRoute.get("/cours", classController.findAllClass);
+CalssRoute.post("/cours",classController.addOneClass);
+CalssRoute.put("/cours/edit/:id", classController.editOneClass);
+CalssRoute.delete("/cours/delete/:id", classController.deleteOne);
     
-module.exports = CalssRouter;
+module.exports = CalssRoute;

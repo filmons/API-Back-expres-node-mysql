@@ -58,11 +58,11 @@ exports.editOneClass = (request, response) => {
 		}
 	);
 };
-exports.deleteOneMesse = (request, response) => {
+exports.deleteOne = (request, response) => {
 	const { id } = request.params;
 	//console.log(request.params);
 
-	Class.deleteMesse(id, (error) => {
+	Class.delete(id, (error) => {
 		if (error) {
 			response.status(500).json({
 				message: "there is probleme on your server.",

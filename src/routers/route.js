@@ -1,9 +1,9 @@
 const express = require('express');
-const CalssRouter = require('../routers/classR');
-const userRouter = require('../routers/user')
+const CalssRouters = require('./classR');
+const userRouter = require('./user')
 const MessesRouter = require('./messesRoute')
 const router = express.Router();
-router.use(CalssRouter);
+router.use(CalssRouters);
 router.use(MessesRouter);
 router.use(userRouter);
 router.use('*' ,(request, response) => {
