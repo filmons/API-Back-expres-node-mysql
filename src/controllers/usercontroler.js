@@ -4,11 +4,28 @@ const bcrypt = require("bcrypt");
 const body_parser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const SECRET = "motSecret";
+
 const MAXAGE = Math.floor(Date.now() / 100) + 10 * 10;
+
+exports.findAllUsers = (request, response) => {
+	userModel.getAllUsers((error, users) => {
+		if (error) {
+			response.status(500).json({
+				message: "le servre founuction plus.",
+			});
+		} else {
+			response.status(200).json({
+				users,
+			});
+		}
+		console.log(users); // pour voir tout les users
+	});
+};
+
 exports.newUser = (request, response) => {
 	const { first_name, last_name, email, city, password } = request.body;
 
-		if (city.length  === 0) {
+		if (city.length === 0) {
 			
 		response.status(400).json({
 			message: "les champs ne peut pas être vide!",
@@ -59,20 +76,7 @@ exports.newUser = (request, response) => {
 		});
 	}
 };
-exports.findAllUsers = (request, response) => {
-	userModel.getAllUsers((error, users) => {
-		if (error) {
-			response.status(500).json({
-				message: "le servre founuction plus.",
-			});
-		} else {
-			response.status(200).json({
-				users,
-			});
-		}
-		console.log(users); // pour voir tout les users
-	});
-};
+
 
 // end of inscreption
 //sign parti start here
@@ -137,7 +141,8 @@ exports.findUser = (request, response) => {
 		}
 	});
 };
-exports.logout = (request, response) => {
-	response.clearCookie("authcookie");
-	response.redirect("/");
-};
+
+// exports.logout = (request, response) => {
+// 	response.clearCookie("authcookie");
+// 	response.redirect("/");
+// };

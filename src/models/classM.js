@@ -1,5 +1,6 @@
 const { request } = require("express");
 const db = require("../db");
+
 exports.findAll = (callback) => {
 	db.query("SELECT * FROM cours;", (error, result) => {
 		if (error) {

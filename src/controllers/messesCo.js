@@ -21,7 +21,7 @@ exports.addOneMesse = (request, response) => {
 	Messe.createMesses(request.body, (error, result) => {
 		if (error) {
 			response.status(500).json({
-				message: "there is probleme on your messes adding server  Controller.",
+				message: "there is probleme on your calnder adding server  Controller.",
 			});
 		} else {
 			response.status(200).json({
