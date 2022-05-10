@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon app.js",
+    "build": "babel src -d lib",
     "test": "jest"
   },
   "dependencies": {

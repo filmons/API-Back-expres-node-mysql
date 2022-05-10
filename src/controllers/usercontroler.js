@@ -25,7 +25,7 @@ exports.findAllUsers = (request, response) => {
 exports.newUser = (request, response) => {
 	const { first_name, last_name, email, city, password } = request.body;
 
-		if (city.length === 0) {
+		if (first_name == 0) {
 			
 		response.status(400).json({
 			message: "les champs ne peut pas être vide!",
@@ -33,8 +33,8 @@ exports.newUser = (request, response) => {
 	} else {
 			userModel.chikingUser(email, (error, result) => {
 			console.log(changeUser);
-			if (result.length !== 0) {
-				console.log(result.length);
+			if (result !== 0) {
+
 				response.status(409).json({
 					message:
 						"Un utilisateur utilisant cette adress email est déjà enregistré !",

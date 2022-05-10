@@ -3,7 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 const cors = require("cors"); // pour eviter que tous puissent taper sur mon API
-const router = require("./src/routers/route");
+const router = require("./routers/route");
 require("dotenv").config();
 const cookieParser = require('cookie-parser');
 const port = process.env.PORT;
